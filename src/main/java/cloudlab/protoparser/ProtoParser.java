@@ -1,13 +1,19 @@
 package cloudlab.protoparser;
 
+import cloudlab.genericadapter.Adapter;
+
 import java.io.*;
 import java.util.HashMap;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  * Created by shreyasbr on 27-05-2016.
  */
 public class ProtoParser {
-    public static HashMap<String, String> parse() throws IOException {
+    private static final Logger logger = Logger.getLogger(ProtoParser.class.getName());
+
+    public static HashMap<String, String> parse() {
         HashMap<String, String> parsedMap = new HashMap<>();
         try (BufferedReader br = new BufferedReader(new FileReader(new File(System.getProperty("user.dir") + "/src/main/proto/main.proto")))) {
             String line;
@@ -22,6 +28,10 @@ public class ProtoParser {
                     parsedMap.put("serviceName", serviceName);
                 }
             }
+        } catch (FileNotFoundException e) {
+            logger.log(Level.WARNING, "Proto file not found", e);
+        } catch (IOException e) {
+            logger.log(Level.WARNING, "Error while parsing Proto file", e);
         }
         System.out.println("parsedMap = " + parsedMap);
         return parsedMap;
