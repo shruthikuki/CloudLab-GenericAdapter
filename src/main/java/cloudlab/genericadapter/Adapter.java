@@ -56,7 +56,7 @@ public class Adapter extends HttpServlet {
             e.printStackTrace();
         }
         Map<String, Object> paramsMap = reqIn.getNamedParams();
-        String methodToInvokeName = paramsMap.get("method").toString();
+        String methodToInvokeName = reqIn.getMethod();
         String[] requestParameters = (String[]) paramsMap.get("requestParameters");
 
         Object blockingStub = getBlockingStub();
