@@ -59,8 +59,8 @@ public class Adapter extends HttpServlet {
         Map<String, Object> paramsMap = reqIn.getNamedParams();
         String methodToInvokeName = reqIn.getMethod();
         JSONArray requestParameters = (JSONArray) paramsMap.get("requestParameters");
-        System.out.println("requestParameters.toString() = " + requestParameters.toString());    
-    
+        System.out.println("requestParameters.toString() = " + requestParameters.toString());
+
         Object blockingStub = getBlockingStub();
 
         Method methodToInvoke = getMethodToInvoke(blockingStub, methodToInvokeName);
@@ -122,7 +122,7 @@ public class Adapter extends HttpServlet {
         Method getAllFieldsMethod;
         StringBuilder response = new StringBuilder();
         try {
-            getAllFieldsMethod = replyObject.getClass().getDeclaredMethod("getAllFields");
+            getAllFieldsMethod = replyObject.getClass().getSuperclass().getDeclaredMethod("getAllFields");
             Map<Descriptors.FieldDescriptor, Object> outputMap = (Map<Descriptors.FieldDescriptor, Object>) getAllFieldsMethod.invoke(replyObject, null);
             for (Descriptors.FieldDescriptor fieldDescriptor : outputMap.keySet()) {
                 response.append(outputMap.get(fieldDescriptor).toString()).append("\n");
@@ -135,7 +135,7 @@ public class Adapter extends HttpServlet {
             logger.log(Level.WARNING, "Cannot access method getOutput", e);
         }
 
-        JSONRPC2Response rpcResponse = new JSONRPC2Response(response, reqIn.getID());
+        JSONRPC2Response rpcResponse = new JSONRPC2Response(response.toString(), reqIn.getID());
         out.println(rpcResponse);
     }
 
