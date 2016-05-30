@@ -9,8 +9,8 @@
         <servlet-class>cloudlab.adaptertrial.JSONRpcServlet</servlet-class>
     </servlet>
     <servlet>
-        <servlet-name>GenericAdapter</servlet-name>
-        <servlet-class>cloudlab.genericadapter.GenericOpsAdapter</servlet-class>
+        <servlet-name>Adapter</servlet-name>
+        <servlet-class>cloudlab.genericadapter.Adapter</servlet-class>
     </servlet>
 
     <servlet-mapping>
@@ -18,8 +18,8 @@
         <url-pattern>/HelloWorld</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
-        <servlet-name>GenericAdapter</servlet-name>
-        <url-pattern>/genericOps</url-pattern>
+        <servlet-name>Adapter</servlet-name>
+        <url-pattern>/request</url-pattern>
     </servlet-mapping>
 </web-app>
 
