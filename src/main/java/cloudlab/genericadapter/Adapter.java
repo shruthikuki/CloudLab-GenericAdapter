@@ -10,6 +10,7 @@ import com.thetransactioncompany.jsonrpc2.JSONRPC2Response;
 import io.grpc.Channel;
 import io.grpc.ManagedChannel;
 import io.grpc.ManagedChannelBuilder;
+import net.minidev.json.JSONArray;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
@@ -57,8 +58,9 @@ public class Adapter extends HttpServlet {
         }
         Map<String, Object> paramsMap = reqIn.getNamedParams();
         String methodToInvokeName = reqIn.getMethod();
-        String[] requestParameters = (String[]) paramsMap.get("requestParameters");
-
+        JSONArray requestParameters = (JSONArray) paramsMap.get("requestParameters");
+        System.out.println("requestParameters.toString() = " + requestParameters.toString());    
+    
         Object blockingStub = getBlockingStub();
 
         Method methodToInvoke = getMethodToInvoke(blockingStub, methodToInvokeName);
@@ -81,8 +83,8 @@ public class Adapter extends HttpServlet {
             try {
                 setMethod = builderObject.getClass().getDeclaredMethod(setMethodName, ProtoParser.getJavaClass(f.getJavaType().toString()));
                 System.out.println("setMethod.getName() = " + setMethod.getName());
-                System.out.println("Setting: " + requestParameters[index]);
-                builderObject = setMethod.invoke(builderObject, requestParameters[index]);
+                System.out.println("Setting: " + requestParameters.get(index));
+                builderObject = setMethod.invoke(builderObject, requestParameters.get(index));
                 index++;
             } catch (NoSuchMethodException e) {
                 logger.log(Level.WARNING, "No such method " + setMethodName, e);
