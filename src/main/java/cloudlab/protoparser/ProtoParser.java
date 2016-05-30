@@ -15,7 +15,7 @@ public class ProtoParser {
 
     public static HashMap<String, String> parse() {
         HashMap<String, String> parsedMap = new HashMap<>();
-        try (BufferedReader br = new BufferedReader(new FileReader(new File(/*System.getProperty("user.dir") + "/CloudLab-GenericAdapter/src/main/proto/main.proto"*/"/api/main.proto")))) {
+        try (BufferedReader br = new BufferedReader(new FileReader(new File("/api/main.proto")))) {
             String line;
             while ((line = br.readLine()) != null) {
                 if (line.startsWith("package")) {
