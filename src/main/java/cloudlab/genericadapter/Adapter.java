@@ -136,7 +136,7 @@ public class Adapter extends HttpServlet {
         }
 
         JSONRPC2Response rpcResponse = new JSONRPC2Response(response.toString(), reqIn.getID());
-        out.println(rpcResponse);
+        out.println(rpcResponse.toString());
     }
 
     private Object getBlockingStub() {
