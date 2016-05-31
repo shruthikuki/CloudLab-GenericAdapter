@@ -87,8 +87,6 @@ public class Temp {
             e.printStackTrace();
         }
 
-        GenericRequest.newBuilder().setBucketName("du");
-
 //Descriptor d = Request.newBuilder().getDescriptor();
         String[] requestParameters = {"shreyas", "ssm-output-cloudlab", "ubuntu", "52.39.4.207", "puppetlabs-mysql", "https://github.com/shruthikuki/CloudLab-Sample-Puppet-MySQL.git"};
         fd = dObj.getFields();
