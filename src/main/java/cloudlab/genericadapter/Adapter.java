@@ -1,7 +1,5 @@
 package cloudlab.genericadapter;
 
-import cloudlab.GenericOpsProto.GenericOpsGrpc;
-import cloudlab.GenericOpsProto.GenericRequest;
 import cloudlab.protoparser.ProtoParser;
 import com.google.protobuf.Descriptors;
 import com.thetransactioncompany.jsonrpc2.JSONRPC2ParseException;
