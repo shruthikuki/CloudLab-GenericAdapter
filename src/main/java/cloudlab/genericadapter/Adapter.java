@@ -59,9 +59,10 @@ public class Adapter extends HttpServlet {
         Map<String, Object> paramsMap = reqIn.getNamedParams();
         String methodToInvokeName = reqIn.getMethod();
         JSONArray requestParameters = (JSONArray) paramsMap.get("requestParameters");
+        String serviceName = (String) paramsMap.get("serviceName");
         System.out.println("requestParameters.toString() = " + requestParameters.toString());
 
-        Object blockingStub = getBlockingStub();
+        Object blockingStub = getBlockingStub(serviceName);
 
         Method methodToInvoke = getMethodToInvoke(blockingStub, methodToInvokeName);
         if (methodToInvoke == null) {
@@ -139,12 +140,12 @@ public class Adapter extends HttpServlet {
         out.println(rpcResponse.toString());
     }
 
-    private Object getBlockingStub() {
+    private Object getBlockingStub(String serviceName) {
         HashMap<String, String> parsedMap = ProtoParser.parse();
         Class cls;
         Object blockingStubObject = null;
         try {
-            cls = Class.forName(parsedMap.get("packageName") + "." + parsedMap.get("serviceName") + "Grpc");
+            cls = Class.forName(parsedMap.get("packageName") + "." + serviceName + "Grpc");
             System.out.println(cls.getName());
             /*Class[] p = new Class[1];
             p[0] = Channel.class;*/
