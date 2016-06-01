@@ -43,15 +43,15 @@ public class ProtoParser {
         if (javaType.toLowerCase().equals("string")) {
             return String.class;
         } else if (javaType.toLowerCase().equals("float")) {
-            return Float.class;
+            return float.class;
         } else if (javaType.toLowerCase().equals("int")) {
-            return Integer.class;
+            return int.class;
         } else if (javaType.toLowerCase().equals("long")) {
-            return Long.class;
+            return long.class;
         } else if (javaType.toLowerCase().equals("double")) {
-            return Double.class;
+            return double.class;
         } else if (javaType.toLowerCase().equals("boolean")) {
-            return Boolean.class;
+            return boolean.class;
         }
         System.out.println("No equivalent Java Type found for: " + javaType);
         return null;
