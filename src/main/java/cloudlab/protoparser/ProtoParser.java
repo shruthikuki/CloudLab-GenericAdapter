@@ -3,6 +3,8 @@ package cloudlab.protoparser;
 import cloudlab.genericadapter.Adapter;
 
 import java.io.*;
+import java.lang.reflect.InvocationTargetException;
+import java.lang.reflect.Method;
 import java.util.HashMap;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -52,6 +54,28 @@ public class ProtoParser {
             return Boolean.class;
         }
         System.out.println("No equivalent Java Type found for: " + javaType);
+        return null;
+    }
+
+    public static Object getWrapperObject(Object paramString, String javaType) {
+        if (javaType.toLowerCase().equals("string")) {
+            return paramString;
+        } else if (javaType.toLowerCase().equals("float")) {
+            try {
+                Class floatClass = Class.forName("java.lang.Float");
+                String methodName = "parseFloat";
+                Method parseMethod = floatClass.getDeclaredMethod(methodName, String.class);
+                return parseMethod.invoke(null, paramString);
+            } catch (ClassNotFoundException e) {
+                e.printStackTrace();
+            } catch (NoSuchMethodException e) {
+                e.printStackTrace();
+            } catch (InvocationTargetException e) {
+                e.printStackTrace();
+            } catch (IllegalAccessException e) {
+                e.printStackTrace();
+            }
+        }
         return null;
     }
 }
