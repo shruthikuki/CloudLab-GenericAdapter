@@ -75,6 +75,66 @@ public class ProtoParser {
             } catch (IllegalAccessException e) {
                 e.printStackTrace();
             }
+        } else if (javaType.toLowerCase().equals("int")) {
+            try {
+                Class intClass = Class.forName("java.lang.Integer");
+                String methodName = "parseInt";
+                Method parseMethod = intClass.getDeclaredMethod(methodName, String.class);
+                return parseMethod.invoke(null, paramString);
+            } catch (ClassNotFoundException e) {
+                e.printStackTrace();
+            } catch (NoSuchMethodException e) {
+                e.printStackTrace();
+            } catch (InvocationTargetException e) {
+                e.printStackTrace();
+            } catch (IllegalAccessException e) {
+                e.printStackTrace();
+            }
+        } else if (javaType.toLowerCase().equals("double")) {
+            try {
+                Class doubleClass = Class.forName("java.lang.Double");
+                String methodName = "parseDouble";
+                Method parseMethod = doubleClass.getDeclaredMethod(methodName, String.class);
+                return parseMethod.invoke(null, paramString);
+            } catch (ClassNotFoundException e) {
+                e.printStackTrace();
+            } catch (NoSuchMethodException e) {
+                e.printStackTrace();
+            } catch (InvocationTargetException e) {
+                e.printStackTrace();
+            } catch (IllegalAccessException e) {
+                e.printStackTrace();
+            }
+        } else if (javaType.toLowerCase().equals("long")) {
+            try {
+                Class longClass = Class.forName("java.lang.Long");
+                String methodName = "parseLong";
+                Method parseMethod = longClass.getDeclaredMethod(methodName, String.class);
+                return parseMethod.invoke(null, paramString);
+            } catch (ClassNotFoundException e) {
+                e.printStackTrace();
+            } catch (NoSuchMethodException e) {
+                e.printStackTrace();
+            } catch (InvocationTargetException e) {
+                e.printStackTrace();
+            } catch (IllegalAccessException e) {
+                e.printStackTrace();
+            }
+        } else if (javaType.toLowerCase().equals("boolean")) {
+            try {
+                Class boolClass = Class.forName("java.lang.Boolean");
+                String methodName = "parseBoolean";
+                Method parseMethod = boolClass.getDeclaredMethod(methodName, String.class);
+                return parseMethod.invoke(null, paramString);
+            } catch (ClassNotFoundException e) {
+                e.printStackTrace();
+            } catch (NoSuchMethodException e) {
+                e.printStackTrace();
+            } catch (InvocationTargetException e) {
+                e.printStackTrace();
+            } catch (IllegalAccessException e) {
+                e.printStackTrace();
+            }
         }
         return null;
     }
