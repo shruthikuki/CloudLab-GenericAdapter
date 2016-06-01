@@ -83,7 +83,7 @@ public class Adapter extends HttpServlet {
                 setMethod = builderObject.getClass().getDeclaredMethod(setMethodName, ProtoParser.getJavaClass(f.getJavaType().toString()));
                 System.out.println("setMethod.getName() = " + setMethod.getName());
                 System.out.println("Setting: " + requestParameters.get(index));
-                builderObject = setMethod.invoke(builderObject, requestParameters.get(index));
+                builderObject = setMethod.invoke(builderObject, ProtoParser.getJavaClass(f.getJavaType().toString()).cast(requestParameters.get(index)));
                 index++;
             } catch (NoSuchMethodException e) {
                 logger.log(Level.WARNING, "No such method " + setMethodName, e);
